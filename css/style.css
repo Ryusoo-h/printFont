@@ -25,6 +25,11 @@ main #functions {
   border-top: solid 1px #ddd;
   padding: 10px;
 }
+main #functions #font-size-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
 main #functions #current-size-label {
   font-size: 16px;
   position: relative;

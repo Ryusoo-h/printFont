@@ -24,6 +24,11 @@ main {
     font-size: 18px;
     border-top: solid 1px #ddd;
     padding: 10px;
+    #font-size-wrapper {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
     #current-size-label {
       font-size: 16px;
       position: relative;
