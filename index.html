@@ -6,6 +6,7 @@
   <link rel="icon" href="./image/favicon.ico">
   <script type="module" src="./script/debounce.js" defer></script>
   <script type="module" src="./script/miFlowerFontData.js" defer></script>
+  <script type="module" src="./script/changeSize.js" defer></script>
   <script type="module" src="./script/script.js" defer></script>
   <link rel="stylesheet" href="./css/style.css">
   <title>미꽃체로 보여줘!</title>
@@ -15,10 +16,24 @@
     <h1>🌼미꽃체로 보여줘!🌼</h1>
   </header>
   <main>
-    <label for="text">미꽃체 변환</label>
-    <textarea class="text-box" name="text" id="text" cols="50" rows="6"></textarea>
-    <div id="printFont" class="text-box">
-    </div>
+    <section id="functions">
+      <div id="font-size-wrapper">
+        <label id="current-size-label" for="current-size">현재 크기(%) :</label> 
+        <input id="current-size" type="number" min="10" max="300" step="10" value="100">
+        <div class="wrapper">
+          <button id="size50">50%</button>
+          <button id="size80">80%</button>
+          <button id="size90">90%</button>
+          <button id="size100" class="current">100%</button>
+          <button id="size150">150%</button>
+        </div>
+      </div>
+    </section>
+    <section id="view">
+      <label for="text" style="display: none;">미꽃체 변환</label>
+      <textarea class="text-box" name="text" id="text" cols="50" rows="6" placeholder="글자를 입력해주세요"></textarea>
+      <div id="printFont" class="text-box"></div>
+    </section>
   </main>
 </body>
 </html>

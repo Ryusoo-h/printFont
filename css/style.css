@@ -16,11 +16,58 @@ h1 {
 main {
   display: flex;
   flex-direction: column;
-  gap: 20px;
-  width: 80%;
+  gap: 10px;
+  width: 90%;
   max-width: 1000px;
 }
-main .text-box {
+main #functions {
+  font-size: 18px;
+  border-top: solid 1px #ddd;
+  padding: 10px;
+}
+main #functions #current-size-label {
+  font-size: 16px;
+  position: relative;
+  z-index: 1;
+  display: inline-block;
+  vertical-align: top;
+  margin-top: 5px;
+  margin-left: 10px;
+}
+main #functions #current-size {
+  font-size: 18px;
+  width: 50px;
+  border-radius: 7px;
+  padding: 7px 8px 6px 120px;
+  margin-bottom: 10px;
+  border: none;
+  background-color: #ffd6d6;
+  margin-left: -120px;
+  position: relative;
+  z-index: 0;
+}
+main #functions button {
+  box-sizing: border-box;
+  font-size: 18px;
+  border-radius: 7px;
+  border: none;
+  padding: 4px 8px;
+  border: solid 2px #ffd6d6;
+  background-color: #fff;
+}
+main #functions button.current {
+  border: solid 2px #ff8498;
+  background-color: #ff8498;
+  color: #fff;
+}
+main #view {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+  width: 100%;
+}
+main #view .text-box {
   padding: 10px;
   margin: 0;
   font-size: 20px;
@@ -29,7 +76,7 @@ main .text-box {
   border: solid 1px #d3c6cb;
   border-radius: 7px;
 }
-main #printFont {
+main #view #printFont {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
@@ -38,17 +85,15 @@ main #printFont {
   font-size: 0;
   vertical-align: top;
 }
-main #printFont .word {
+main #view #printFont .word {
   overflow: hidden;
 }
-main #printFont .word img {
-  width: 1400px;
-}
-main #printFont .line-break + .line-break {
+main #view #printFont .line-break + .line-break {
   width: 100%;
   height: 83px;
 }
-main #printFont .no-font > div {
-  border: solid 2px coral;
+main #view #printFont .no-font > div {
+  border: solid 2px #ffc6b5;
   text-align: center;
+  color: #bc3434;
 }/*# sourceMappingURL=style.css.map */

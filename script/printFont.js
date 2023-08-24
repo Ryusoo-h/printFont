@@ -1,11 +1,12 @@
 import miFlowerFontData from './miFlowerFontData.js';
 
-const widthInfo = [67, 66.5, 66.5, 66.5, 66.3, 66.5];
-const heightInfo= [83, 82.8, 83, 82.8, 82.8, 83];
-const fontWidth = widthInfo[0];
-const fontHeight = heightInfo[0];
-const gridGap = fontWidth*0.097;
-const gridLine = fontWidth*0.126;
+let fontSize = 1;
+export const changeFontSize = (size) => {
+  fontSize = size;
+}
+
+const widthInfo = [67, 66.4, 66.4, 66.4, 66.3, 66.4];
+const heightInfo= [83, 82.85, 82.95, 82.9, 82.9, 82.85];
 
 const changeWordToFontEl = (word) => {
   // 스캔 이미지라 크기가 조금씩 달라서 출력시 조절이 필요했다.
@@ -17,31 +18,39 @@ const changeWordToFontEl = (word) => {
   const x = wordInfo[1];
   const y = wordInfo[2];
   const scanNum = wordInfo[0];
-  const width = widthInfo[scanNum];
-  const height = heightInfo[scanNum];
+  let width = widthInfo[scanNum]*fontSize;
+  let height = heightInfo[scanNum]*fontSize;
+  let imageWidth = 1400*fontSize;
 
   return `
-  <div class="word" style="width: ${width}px; height: ${height}px;">
-    <img src="./image/scan${scanNum}.jpg" alt="" style="transform: translate(-${width*x}px, -${height*y}px);">
-  </div>
-`
+    <div class="word" style="width: ${width}px; height: ${height}px;">
+      <img src="./image/scan${scanNum}.jpg" alt="" style="width: ${imageWidth}px; transform: translate(-${width*x}px, -${height*y}px);">
+    </div>
+  `;
 }
 
-const noFont = `
-  <div class="no-font" style="
-    width: ${fontWidth}px;
-    height: ${fontHeight}px;
-    padding: ${fontHeight*0.168}px ${fontWidth*0.104}px;
-  ">
-    <div style="
-      font-size: ${fontHeight*0.518}px; 
-      background:
-        linear-gradient(to bottom, transparent ${gridGap}px, #e9e9e9 ${gridGap}px) 0 0 / 100vw ${gridLine}px repeat-y,
-        linear-gradient(to right, transparent ${gridGap}px, #e9e9e9 ${gridGap}px) 0 0 / ${gridLine}px 100vh repeat-x
-        white;
-    ">?</div>
-  </div>
-`
+const changeWordToNoFont = () => {
+  let fontWidth = widthInfo[0]*fontSize;
+  let fontHeight = heightInfo[0]*fontSize;
+  let gridGap = fontWidth*0.097;
+  let gridLine = fontWidth*0.126;
+
+  return `
+    <div class="no-font" style="
+      width: ${fontWidth}px;
+      height: ${fontHeight}px;
+      padding: ${fontHeight*0.168}px ${fontWidth*0.104}px;
+    ">
+      <div style="
+        font-size: ${fontHeight*0.518}px; 
+        background:
+          linear-gradient(to bottom, transparent ${gridGap}px, #e9e9e9 ${gridGap}px) 0 0 / 100vw ${gridLine}px repeat-y,
+          linear-gradient(to right, transparent ${gridGap}px, #e9e9e9 ${gridGap}px) 0 0 / ${gridLine}px 100vh repeat-x
+          white;
+      ">?</div>
+    </div>
+  `;
+}
 
 const printFont = (text, printEl) => {
   let printedText = '';
@@ -51,8 +60,7 @@ const printFont = (text, printEl) => {
     } else if (word === '\n') {
       printedText += '<div class="line-break"></div>';
     } else {
-      let changedWord = changeWordToFontEl(word) || noFont;
-      console.log(word, changedWord);
+      let changedWord = changeWordToFontEl(word) || changeWordToNoFont();
       printedText += changedWord;
     }
   }
