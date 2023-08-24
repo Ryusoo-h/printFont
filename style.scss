@@ -30,11 +30,14 @@ main {
     border-radius: 7px;
   }
   #printFont {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
     border: solid 1px #ff7aa6;
     overflow-y: auto;
     font-size: 0;
+    vertical-align: top;
     .word {
-      display: inline-block;
       overflow: hidden;
       img {
         width: 1400px;
@@ -43,6 +46,12 @@ main {
     .line-break + .line-break {
       width: 100%;
       height: 83px;
+    }
+    .no-font {
+      & > div {
+        border: solid 2px coral;
+        text-align: center;
+      }
     }
   }
 }

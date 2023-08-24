@@ -30,12 +30,15 @@ main .text-box {
   border-radius: 7px;
 }
 main #printFont {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
   border: solid 1px #ff7aa6;
   overflow-y: auto;
   font-size: 0;
+  vertical-align: top;
 }
 main #printFont .word {
-  display: inline-block;
   overflow: hidden;
 }
 main #printFont .word img {
@@ -44,4 +47,8 @@ main #printFont .word img {
 main #printFont .line-break + .line-break {
   width: 100%;
   height: 83px;
+}
+main #printFont .no-font > div {
+  border: solid 2px coral;
+  text-align: center;
 }/*# sourceMappingURL=style.css.map */
