@@ -17,7 +17,7 @@ const changeWordToFontEl = (word) => {
 
   return `
   <div class="word" style="width: ${width}px; height: ${height}px;">
-    <img src="./text-image/scan${scanNum}.jpg" alt="" style="transform: translate(-${width*x}px, -${height*y}px);">
+    <img src="./image/scan${scanNum}.jpg" alt="" style="transform: translate(-${width*x}px, -${height*y}px);">
   </div>
 `
 }
