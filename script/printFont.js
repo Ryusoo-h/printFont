@@ -1,6 +1,8 @@
 import miFlowerFontData from './miFlowerFontData.js';
 import { printFontEl, textEl } from './script.js';
 
+// 폰트 사이즈를 저장함
+// fontSize = 1은 100%를 뜻함
 let fontSize = 1;
 export const changeFontSize = (size) => {
   fontSize = size;
@@ -12,6 +14,7 @@ export const changeFontSize = (size) => {
 const widthInfo = [67, 66.4, 66.4, 66.4, 66.3, 66.4];
 const heightInfo= [83, 82.85, 82.95, 82.9, 82.9, 82.85];
 
+// 인자로 받은 'word'를 '폰트이미지 element'로 출력하는 함수
 const changeWordToFontEl = (word) => {
   // 스캔 이미지라 크기가 조금씩 달라서 출력시 조절이 필요했다.
   // (widthInfo와 heightInfo의 인덱스) = (해당 이미지의 scanNum - 1)
@@ -33,7 +36,8 @@ const changeWordToFontEl = (word) => {
   `;
 }
 
-const changeWordToNoFont = () => {
+// '물음표 element(폰트가 없다는 표시로 사용)'를 출력하는 함수
+const changeWordToNoFontEl = () => {
   let fontWidth = widthInfo[0]*fontSize;
   let fontHeight = heightInfo[0]*fontSize;
   let gridGap = fontWidth*0.097;
@@ -56,66 +60,74 @@ const changeWordToNoFont = () => {
   `;
 }
 
+// 인자로 받은 'length'만큼 '빈 칸'을 출력하는 함수
 const printSpaces = (length) => {
-  let printOneLine = '';
+  let spaces = '';
   const spaceEl = changeWordToFontEl('띄어쓰기');
   
   for(let i = 0; i < length; i++) {
-    printOneLine += spaceEl;
+    spaces += spaceEl;
   }
-  return printOneLine;
+  return spaces;
 }
 
-let wordLengthInOneLine = 0;
-let lineBreakLength = 0;
-let printFontElWidth = 0;
-let spaceMaxLength = 0;
-const printFontElPadding = 20;
+let wordLengthInOneLine = 0; // 한 줄안에 글자가 몇 개 인지 저장함(printFont 함수 종료시 초기화)
+let lineBreakLength = 0; // 줄바꿈이 연속되는 횟수를 저장함(printFont 함수 종료시 초기화)
+let printFontElWidth = 0; // 출력될 element의 너비임(printFont 함수 시작시 초기화)
+let spaceMaxLength = 0; // 한 줄에 최대 몇 칸 출력할 수 있는지 저장함(printFont 함수 시작시 초기화)
+const printFontElPadding = 20; // printFontEl의 좌우 패딩값
 
 const printFont = (text) => {
+  // 현재 사이즈 확인, 저장
   printFontElWidth = printFontEl.clientWidth - printFontElPadding;
   spaceMaxLength = Math.floor(printFontElWidth / (widthInfo[0]*fontSize));
+
+  // 출력을 위한 text 가공
   const printOneLine = printSpaces(spaceMaxLength);
   let printedText = '';
 
-  const calcurateRestLength = (wordLength) => {
-    const lestLength = spaceMaxLength - (wordLength % spaceMaxLength);
+  const getRestLength = (wordLength) => {
+    const lestLength = spaceMaxLength - wordLength;
     return lestLength === spaceMaxLength ? 0 : lestLength;
   }
   
+  const checkLengthAndChangeLine = () => {
+    if (wordLengthInOneLine % spaceMaxLength === 0) {
+      wordLengthInOneLine = 0;
+      printedText += '<div class="line-break"></div>';
+    }
+  }
+
+  const AddToPrintedText = (fontEl) => {
+    lineBreakLength = 0;
+    wordLengthInOneLine++;
+    printedText += fontEl;
+    checkLengthAndChangeLine();
+  }
+
   for(let word of text) {
     if (word === ' ') {
-      lineBreakLength = 0;
-      wordLengthInOneLine++;
-      printedText += changeWordToFontEl('띄어쓰기');
-      if (wordLengthInOneLine % spaceMaxLength === 0) {
-        wordLengthInOneLine = 0;
-        printedText += '<div class="line-break"></div>';
-      }
-      lineBreakLength = 0;
+      AddToPrintedText(changeWordToFontEl('띄어쓰기'));
     } else if (word === '\n') {
       // 빈 칸 채워주기
-      printedText += printSpaces(calcurateRestLength(wordLengthInOneLine));
+      printedText += printSpaces(getRestLength(wordLengthInOneLine));
       wordLengthInOneLine = 0;
       // 줄바꾸기
       lineBreakLength++;
-      printedText += lineBreakLength > 1
-      ? `<div class="line-break" style="height:${heightInfo[0]*fontSize}px;"></div>`
-      : '<div class="line-break"></div>';
+      const lineBreakEl = lineBreakLength > 1
+        ? `${printOneLine}<div class="line-break"></div>`
+        : '<div class="line-break"></div>';
+      printedText += lineBreakEl;
     } else {
-      lineBreakLength = 0;
-      wordLengthInOneLine++;
-      let changedWord = changeWordToFontEl(word) || changeWordToNoFont();
-      printedText += changedWord;
-      if (wordLengthInOneLine % spaceMaxLength === 0) {
-        wordLengthInOneLine = 0;
-        printedText += '<div class="line-break"></div>';
-      }
+      const fontEl = changeWordToFontEl(word) || changeWordToNoFontEl()
+      AddToPrintedText(fontEl);
     }
   }
+
+  // 출력
   printFontEl.innerHTML = printedText.length > 0
     ? `${printOneLine}<div class="line-break"></div>
-      ${printedText + printSpaces(calcurateRestLength(wordLengthInOneLine))}
+      ${printedText + printSpaces(getRestLength(wordLengthInOneLine))}
       <div class="line-break"></div>${printOneLine}`
     : printOneLine;
   
