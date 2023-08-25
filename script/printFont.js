@@ -52,14 +52,22 @@ const changeWordToNoFont = () => {
   `;
 }
 
+let checkLineBreakNum = 0;
+
 const printFont = (text, printEl) => {
   let printedText = '';
   for(let word of text) {
     if (word === ' ') {
+      checkLineBreakNum = 0;
       printedText += changeWordToFontEl('띄어쓰기');
+      checkLineBreakNum = 0;
     } else if (word === '\n') {
-      printedText += '<div class="line-break"></div>';
+      checkLineBreakNum++;
+      printedText += checkLineBreakNum > 1 
+      ? `<div class="line-break" style="height:${heightInfo[0]*fontSize}px;"></div>`
+      : '<div class="line-break"></div>';
     } else {
+      checkLineBreakNum = 0;
       let changedWord = changeWordToFontEl(word) || changeWordToNoFont();
       printedText += changedWord;
     }

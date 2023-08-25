@@ -12,6 +12,7 @@ body {
 
 h1 {
   text-align: center;
+  margin: 2rem;
 }
 
 main {
@@ -91,9 +92,8 @@ main {
       .word {
         overflow: hidden;
       }
-      .line-break + .line-break {
+      .line-break {
         width: 100%;
-        height: 83px;
       }
       .no-font {
         & > div {
