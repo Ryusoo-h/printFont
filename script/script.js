@@ -1,5 +1,5 @@
 
-import Debounce from './debounce.js';
+import Debounce from './util/debounce.js';
 import printFont from './printFont.js';
 
 export const textEl = document.getElementById('text');

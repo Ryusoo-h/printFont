@@ -1,5 +1,5 @@
 
-import Debounce from './debounce.js';
+import Debounce from './util/debounce.js';
 import {textEl, printFontEl} from './script.js';
 import printFont from './printFont.js';
 import {changeFontSize} from './printFont.js';
@@ -52,7 +52,7 @@ const changeSize = (value) => {
   changeFontSize(size/100);
   sizeInput.value = size;
   changeCurrentButton(size);
-  printFont(textEl.value, printFontEl);
+  printFont(textEl.value);
 }
 
 size50Button.addEventListener('click', () => {
