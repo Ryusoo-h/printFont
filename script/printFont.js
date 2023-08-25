@@ -138,6 +138,24 @@ const printFont = (text) => {
 
 export default printFont;
 
+export const fillPageWithSpace = (height) => {
+  // 현재 사이즈 확인, 저장
+  printFontElWidth = printFontEl.clientWidth - printFontElPadding;
+  spaceMaxLength = Math.floor(printFontElWidth / (widthInfo[0]*fontSize));
+  const LineToFill = Math.floor(height / (heightInfo[0]*fontSize));
+
+  // 출력을 위한 text 가공
+  const printOneLine = printSpaces(spaceMaxLength);
+  let printedText = '';
+
+  for(let i = 0; i < LineToFill; i++) {
+    printedText += `<div class="line-break"></div>${printOneLine}`;
+  }
+
+  // 출력
+  printFontEl.insertAdjacentHTML('beforeend', printedText);
+}
+
 window.addEventListener(`resize`, function() {
   const width = widthInfo[0]*fontSize;
   const currentWidth = printFontEl.clientWidth - printFontElPadding;

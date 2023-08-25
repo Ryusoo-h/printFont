@@ -16,8 +16,10 @@
   <main>
     <section id="functions">
       <div id="font-size-wrapper">
-        <label id="current-size-label" for="current-size">현재 크기(%) :</label> 
-        <input id="current-size" type="number" min="10" max="300" step="10" value="100">
+        <div class="wrapper">
+          <label id="current-size-label" for="current-size">현재 크기(%) :</label> 
+          <input id="current-size" type="number" min="10" max="300" step="10" value="100">
+        </div>
         <div class="wrapper">
           <button id="size50">50%</button>
           <button id="size80">80%</button>
@@ -25,6 +27,11 @@
           <button id="size100" class="current">100%</button>
           <button id="size150">150%</button>
         </div>
+      </div>
+      <div id="print-wrapper">
+        <button id="print-on-paper">인쇄</button>
+        <span class="info">* 인쇄 추천 사이즈 : 50%</span>
+        <!-- <br> 인쇄 옵션 : 글자만 / 빈 칸 채우기 -->
       </div>
     </section>
     <section id="view">

@@ -6,7 +6,6 @@ label, textarea, div {
 body {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
 }
 
@@ -15,42 +14,26 @@ h1 {
   margin: 2rem;
 }
 
+.info {
+  font-size: 15px;
+  color: #aaa;
+  line-height: 2em;
+}
+
 main {
   display: flex;
   flex-direction: column;
   gap: 10px;
   width: 90%;
-  max-width: 1000px;
+  max-width: 200mm;
   #functions {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 10px;
     font-size: 18px;
     border-top: solid 1px #ddd;
-    padding: 10px;
-    #font-size-wrapper {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-    #current-size-label {
-      font-size: 16px;
-      position: relative;
-      z-index: 1;
-      display: inline-block;
-      vertical-align: top;
-      margin-top: 5px;
-      margin-left: 10px;
-    }
-    #current-size {
-      font-size: 18px;
-      width: 50px;
-      border-radius: 7px;
-      padding: 7px 8px 6px 120px;
-      margin-bottom: 10px;
-      border: none;
-      background-color: #ffd6d6;
-      margin-left: -120px;
-      position: relative;
-      z-index: 0;
-    }
+    padding-top: 10px;
     button {
       box-sizing: border-box;
       font-size: 18px;
@@ -62,6 +45,47 @@ main {
       &.current {
         border: solid 2px #ff8498;
         background-color: #ff8498;
+        color: #fff;
+      }
+    }
+    #font-size-wrapper {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      .wrapper {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 6px;
+        flex-wrap: wrap;
+      }
+      #current-size-label {
+        font-size: 16px;
+        position: relative;
+        z-index: 1;
+        line-height: 1em;
+        padding: 0 6px;
+      }
+      #current-size {
+        font-size: 18px;
+        width: 50px;
+        border-radius: 7px;
+        padding: 7px 8px 6px 120px;
+        border: none;
+        background-color: #ffd6d6;
+        margin-left: -120px;
+        position: relative;
+        z-index: 0;
+        line-height: 1em;
+      }
+    }
+    #print-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: end;
+      #print-on-paper {
+        background-color: #2865ff;
+        border: solid 2px #2865ff;
         color: #fff;
       }
     }
@@ -89,6 +113,7 @@ main {
       overflow-y: auto;
       font-size: 0;
       vertical-align: top;
+      max-width: 200mm;
       .word {
         overflow: hidden;
       }
@@ -102,6 +127,43 @@ main {
           color: #bc3434;
         }
       }
+    }
+  }
+}
+
+@page {size:21cm 29.7cm; margin: 10mm 0mm;}
+@media print{
+  html, body {
+    margin: 0 auto;
+    width: 220mm;
+  }
+	header, main #functions, #view > label, #view > textarea { display:none };
+  main #view #printFont {
+    border: none;
+    width: 200mm;
+    padding: 0;
+    margin: 0;
+    min-height: initial;
+    box-shadow: initial;
+    background: initial;
+    page-break-after: always;
+    page-break-inside:auto;
+    div {
+      page-break-inside:avoid;
+      page-break-after:auto;
+    }
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+}
+
+@media (max-width: 912px) {
+  main {
+    #functions {
+      flex-direction: column;
     }
   }
 }
