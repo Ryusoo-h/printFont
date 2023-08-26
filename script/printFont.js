@@ -11,8 +11,8 @@ export const changeFontSize = (size) => {
 // widthInfo, heightInfo 의 default값이 인덱스 0이다. 
 // 인덱스 0자리가 가장 커야한다. '.' 한줄 칸 개수의 기준이됨
 // 인덱스 1~5까지 스캔이미지 파일의 1~5 번호와 일치함
-const widthInfo = [67, 66.4, 66.4, 66.4, 66.3, 66.4];
-const heightInfo= [83, 82.85, 82.95, 82.9, 82.9, 82.85];
+const widthInfo = [67, 66.4, 66.4, 66.4, 66.3, 66.4, 66.4];
+const heightInfo= [83, 82.85, 82.95, 82.9, 82.9, 82.85, 82.85];
 
 // 인자로 받은 'word'를 '폰트이미지 element'로 출력하는 함수
 const changeWordToFontEl = (word) => {
