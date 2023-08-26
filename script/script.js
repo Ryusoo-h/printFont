@@ -14,13 +14,20 @@ textEl.addEventListener('keyup', () => {
 });
 
 printOnPaperButton.addEventListener('click', () => {
-  const fillSpace = true;
+  // 세팅
+  const fillSpace = true; // 빈칸 인쇄 여부 저장
+  const defaultTitle = document.title;
+  document.title = '미꽃체) ' + textEl.value.slice(0, 30);
   if (fillSpace) {
     const printFontElPadding = 20;
     const maxHeight = 1122 - printFontElPadding; // 20은 padding값임
     const textHeight = printFontEl.clientHeight - printFontElPadding;
     fillPageWithSpace(maxHeight - (textHeight % maxHeight));
   }
+  // 실행
   window.print();
+
+  // 초기화
   printFont(textEl.value);
+  document.title = defaultTitle;
 });
