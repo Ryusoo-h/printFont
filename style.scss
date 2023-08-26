@@ -146,7 +146,7 @@ main {
     min-height: initial;
     box-shadow: initial;
     background: initial;
-    page-break-after: always;
+    page-break-after: avoid;
     page-break-inside:auto;
     div {
       page-break-inside:avoid;

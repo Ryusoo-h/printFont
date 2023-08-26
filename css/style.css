@@ -148,7 +148,7 @@ main #view #printFont .no-font > div {
     min-height: initial;
     box-shadow: initial;
     background: initial;
-    page-break-after: always;
+    page-break-after: avoid;
     page-break-inside: auto;
     -ms-overflow-style: none;
     scrollbar-width: none;
