@@ -114,6 +114,7 @@ main {
       font-size: 0;
       vertical-align: top;
       max-width: 200mm;
+      filter: contrast(110%);
       .word {
         overflow: hidden;
       }
@@ -139,6 +140,7 @@ main {
   }
 	header, main #functions, #view > label, #view > textarea { display:none };
   main #view #printFont {
+    filter: none;
     border: none;
     width: 200mm;
     padding: 0;

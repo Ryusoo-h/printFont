@@ -115,6 +115,7 @@ main #view #printFont {
   font-size: 0;
   vertical-align: top;
   max-width: 200mm;
+  filter: contrast(110%);
 }
 main #view #printFont .word {
   overflow: hidden;
@@ -141,6 +142,7 @@ main #view #printFont .no-font > div {
     display: none;
   }
   main #view #printFont {
+    filter: none;
     border: none;
     width: 200mm;
     padding: 0;
