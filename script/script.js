@@ -19,12 +19,13 @@ const preLoadFontImage = (...urls) => { // urls는 경로에서 .확장자를 �
   })
 }
 preLoadFontImage(
-  '../image/scan1',
-  '../image/scan2',
-  '../image/scan3',
-  '../image/scan4',
-  '../image/scan5',
-  '../image/scan6', );
+  './image/scan1',
+  './image/scan2',
+  './image/scan3',
+  './image/scan4',
+  './image/scan5',
+  './image/scan6'
+);
 
 printFont('');
 
