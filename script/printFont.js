@@ -77,6 +77,9 @@ let printFontElWidth = 0; // 출력될 element의 너비임(printFont 함수 시
 let spaceMaxLength = 0; // 한 줄에 최대 몇 칸 출력할 수 있는지 저장함(printFont 함수 시작시 초기화)
 const printFontElPadding = 20; // printFontEl의 좌우 패딩값
 
+let isOpenedApostrophe = false; // 작은따옴표 여닫음 여부
+let isOpenedQuotationMark = false; // 큰따옴표 여닫음 여부
+
 const printFont = (text) => {
   // 현재 사이즈 확인, 저장
   printFontElWidth = printFontEl.clientWidth - printFontElPadding;
@@ -108,6 +111,12 @@ const printFont = (text) => {
   for(let word of text) {
     if (word === ' ') {
       AddToPrintedText(changeWordToFontEl('띄어쓰기'));
+    } else if (word === "'") {
+      AddToPrintedText(changeWordToFontEl(isOpenedApostrophe ? '닫는작은따옴표' : '여는작은따옴표'));
+      isOpenedApostrophe = !isOpenedApostrophe;
+    } else if (word === '"') {
+      AddToPrintedText(changeWordToFontEl(isOpenedQuotationMark ? '닫는큰따옴표' : '여는큰따옴표'));
+      isOpenedQuotationMark = !isOpenedQuotationMark;
     } else if (word === '\n') {
       // 빈 칸 채워주기
       printedText += printSpaces(getRestLength(wordLengthInOneLine));
@@ -134,6 +143,8 @@ const printFont = (text) => {
   // 초기화
   wordLengthInOneLine = 0;
   lineBreakLength = 0;
+  isOpenedApostrophe = false;
+  isOpenedQuotationMark = false;
 }
 
 export default printFont;

@@ -123,7 +123,7 @@ const scan5 = [
   '홱홴횃횅회획횐횔횝횟횡효횬횰횹횻후훅훈훌훑',
   '훔훗훙훠훨훰훵훼훽휀휄휑휘휙휜휠휨휩휫휭휴',
   '휵휸휼흄흇흉흐흑흔흖흗흘흙흠흡흣흥흩희흰흴',
-  `흼흽힁히힉힌힐힘힙힛힝,.!?~`, // TODO ' ' " " 따옴표 시작과 끝을 구분해서 출력해야함
+  `흼흽힁히힉힌힐힘힙힛힝,.!?~`,
 ];
 const scan6 = [
   'ABCDEFGHIJKLMNOPQRSTU',
@@ -151,6 +151,10 @@ changer(3, scan3);
 changer(4, scan4);
 changer(5, scan5);
 changer(6, scan6);
+miFlowerFontData.set('여는작은따옴표', [5, 16, 8]);
+miFlowerFontData.set('닫는작은따옴표', [5, 17, 8]);
+miFlowerFontData.set('여는큰따옴표', [5, 18, 8]);
+miFlowerFontData.set('닫는큰따옴표', [5, 19, 8]);
 miFlowerFontData.set('띄어쓰기', [5, 20, 8]);
 
 export default miFlowerFontData;
