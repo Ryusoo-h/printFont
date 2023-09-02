@@ -31,7 +31,11 @@ const changeWordToFontEl = (word) => {
 
   return `
     <div class="word" style="width: ${widthInfo[0]*fontSize}px; height: ${heightInfo[0]*fontSize}px;">
-      <img src="./image/scan${scanNum}.jpg" alt="" style="width: ${imageWidth}px; transform: translate(-${width*x}px, -${height*y}px);">
+      <picture>
+        <source srcset="./image/scan${scanNum}.avif" type="image/avif">
+        <source srcset="./image/scan${scanNum}.webp" type="image/webp">
+        <img src="./image/scan${scanNum}.jpg" alt="" style="width: ${imageWidth}px; transform: translate(-${width*x}px, -${height*y}px);" alt="폰트이미지'${word}'">
+      </picture>
     </div>
   `;
 }

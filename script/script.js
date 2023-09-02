@@ -7,22 +7,24 @@ export const printFontEl = document.getElementById('printFont');
 const printOnPaperButton = document.getElementById('print-on-paper');
 const debounce = new Debounce();
 
-const preLoadImage = (...urls) => {
-  const images = [];
+const preLoadFontImage = (...urls) => { // urls는 경로에서 .확장자를 뺀 부분만 입력해야함.
   urls.forEach((url) => {
-    const img = new Image(0,0);
-    img.src = url;
-    images.push(img);
-    document.querySelector('body').appendChild(img);
+    document.querySelector('body').insertAdjacentHTML("beforeend", `
+      <picture>
+        <source srcset="${url}.avif" type="image/avif">
+        <source srcset="${url}.webp" type="image/webp">
+        <img src="${url}.jpg" alt="" style="width: 0px; height: 0px;">
+      </picture>
+    `);
   })
 }
-preLoadImage(
-  '../image/scan1.jpg',
-  '../image/scan2.jpg',
-  '../image/scan3.jpg',
-  '../image/scan4.jpg',
-  '../image/scan5.jpg',
-  '../image/scan6.jpg', );
+preLoadFontImage(
+  '../image/scan1',
+  '../image/scan2',
+  '../image/scan3',
+  '../image/scan4',
+  '../image/scan5',
+  '../image/scan6', );
 
 printFont('');
 
